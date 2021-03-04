@@ -11,21 +11,40 @@ namespace AdventOfCode2020
 
         public Day02(List<string> input) => _input = input;
 
-        private bool IsValidPassword(string s) 
+        public bool IsValidPasswordA(string s) 
         {
             string[] parts = s.Split(new Char[] { '-', ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            string pattern = $"{parts[2]}{{{parts[0]},{parts[1]}}}";
-            return Regex.IsMatch(parts[3], pattern);
+            int policyMin = int.Parse(parts[0]);
+            int policyMax = int.Parse(parts[1]);
+            string letter = parts[2];
+            string password = parts[3];
+            int numMatches = Regex.Matches(password, letter).Count;
+            return ( (numMatches >= policyMin) && (numMatches <= policyMax) );
+        }
+
+        public bool IsValidPasswordB(string s) 
+        {
+            string[] parts = s.Split(new Char[] { '-', ':', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            int idx1 = int.Parse(parts[0]) - 1;
+            int idx2 = int.Parse(parts[1]) - 1;
+            char letter = parts[2][0];
+            string password = parts[3];
+
+            return ( 
+                (idx1 < password.Length)
+                && (idx2 < password.Length)
+                && (password[idx1] == letter) ^ (password[idx2] == letter) 
+            );
         }
 
         public int SolveA() 
         {
-            return _input.Where(s => IsValidPassword(s)).Count();
+            return _input.Where(s => IsValidPasswordA(s)).Count();
         }
 
         public int SolveB()
         {
-            return -1;
+            return _input.Where(s => IsValidPasswordB(s)).Count();
         }
     }
 }

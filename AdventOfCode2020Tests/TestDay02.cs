@@ -21,6 +21,24 @@ namespace AdventOfCode2020Tests
         }
 
         [Fact]
+        public void TestIsValidPasswordA()
+        {
+            Assert.True(_day.IsValidPasswordA("1-3 a: abcde"));
+            Assert.False(_day.IsValidPasswordA("1-3 b: cdefg"));
+            Assert.True(_day.IsValidPasswordA("2-9 c: ccccccccc"));
+            Assert.True(_day.IsValidPasswordA("2-9 c: cacacacacacacacac"));
+        }
+
+        [Fact]
+        public void TestIsValidPasswordB()
+        {
+            Assert.True(_day.IsValidPasswordB("1-3 a: abcde"));
+            Assert.False(_day.IsValidPasswordB("1-3 b: cdefg"));
+            Assert.False(_day.IsValidPasswordB("2-9 c: ccccccccc"));
+            Assert.True(_day.IsValidPasswordB("2-9 c: cacacacacacacacac"));
+        }
+
+        [Fact]
         public void TestSolveA()
         {
             int result = _day.SolveA();
@@ -31,7 +49,7 @@ namespace AdventOfCode2020Tests
         public void TestSolveB()
         {
             int result = _day.SolveB();
-            Assert.Equal(0, result);
+            Assert.Equal(1, result);
         }
     }
 }
