@@ -11,10 +11,13 @@ namespace Runner
     {
         static void RunDay(string dayNum)
         {
-            var input = File.ReadLines($"../input/input{dayNum}.txt").ToList();
-            var day = new Day02(input);
-            Console.WriteLine($"Day{dayNum} A: {day.SolveA()}");  //= 1007104
-            Console.WriteLine($"Day{dayNum} B: {day.SolveB()}");  //= 18847752
+            var input = File.ReadLines($"../input/input{dayNum}.txt")
+                .Select(s => s.Trim())
+                .ToList();
+
+            var day = new Day03(input);
+            Console.WriteLine($"Day{dayNum} A: {day.SolveA()}");  
+            Console.WriteLine($"Day{dayNum} B: {day.SolveB()}"); 
         }
 
         static void Main(string[] args)
@@ -32,13 +35,9 @@ namespace Runner
             var days = Enumerable.Range(1, 2);
 
             if (dayNum == DAYS_ALL)
-            {
                 days.ToList().ForEach(d => RunDay(d.ToString().PadLeft(2, '0')));
-            }
             else 
-            {
                 RunDay(dayNum);
-            }
         }
     }
 }
