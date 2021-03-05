@@ -15,7 +15,13 @@ namespace Runner
                 .Select(s => s.Trim())
                 .ToList();
 
-            var day = new Day03(input);
+            IDay day = dayNum switch
+            {
+                "01" => new Day01(input),
+                "02" => new Day02(input),
+                "03" => new Day03(input),
+            };
+
             Console.WriteLine($"Day{dayNum} A: {day.SolveA()}");  
             Console.WriteLine($"Day{dayNum} B: {day.SolveB()}"); 
         }
@@ -32,12 +38,16 @@ namespace Runner
                 ? config["day"].PadLeft(2, '0') 
                 : DAYS_ALL;
 
-            var days = Enumerable.Range(1, 2);
-
             if (dayNum == DAYS_ALL)
-                days.ToList().ForEach(d => RunDay(d.ToString().PadLeft(2, '0')));
+            {
+                Enumerable.Range(1, 3)
+                          .ToList()
+                          .ForEach(d => RunDay(d.ToString().PadLeft(2, '0')));
+            }
             else 
+            {
                 RunDay(dayNum);
+            }             
         }
     }
 }
