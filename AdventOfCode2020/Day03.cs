@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2020
 {
-    public class Day03
+    public class Day03 : IDay 
     {
         private List<string> _input;
         private const char TILE_TREE  = '#';
@@ -32,18 +32,20 @@ namespace AdventOfCode2020
             return numTrees;
         }
 
-        public long SolveA()
+        public string SolveA()
         {
-            return Solve(3, 1);
+            return Solve(3, 1).ToString();
         }
 
-        public long SolveB() 
+        public string SolveB() 
         {
-            return Solve(1, 1)
+            long result = Solve(1, 1)
                  * Solve(3, 1)
                  * Solve(5, 1)
                  * Solve(7, 1)
                  * Solve(1, 2);
+            
+            return result.ToString();
         }
     }
 }

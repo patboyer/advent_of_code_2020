@@ -20,6 +20,7 @@ namespace Runner
                 "01" => new Day01(input),
                 "02" => new Day02(input),
                 "03" => new Day03(input),
+                "04" => new Day04(input),
             };
 
             Console.WriteLine($"Day{dayNum} A: {day.SolveA()}");  

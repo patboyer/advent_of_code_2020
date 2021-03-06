@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode2020
 {
-    public class Day02
+    public class Day02 : IDay
     {
         private List<string> _input;
 
@@ -37,14 +37,14 @@ namespace AdventOfCode2020
             );
         }
 
-        public int SolveA() 
+        public string SolveA() 
         {
-            return _input.Where(s => IsValidPasswordA(s)).Count();
+            return _input.Where(s => IsValidPasswordA(s)).Count().ToString();
         }
 
-        public int SolveB()
+        public string SolveB()
         {
-            return _input.Where(s => IsValidPasswordB(s)).Count();
+            return _input.Where(s => IsValidPasswordB(s)).Count().ToString();
         }
     }
 }

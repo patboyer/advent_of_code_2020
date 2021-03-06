@@ -18,15 +18,13 @@ namespace AdventOfCode2020Tests
         [Fact]
         public void TestSolveA()
         {
-            int result = _day.SolveA();
-            Assert.Equal(514579, result);
+            Assert.Equal("514579", _day.SolveA());
         }
 
         [Fact]
         public void TestSolveB()
         {
-            int result = _day.SolveB();
-            Assert.Equal(241861950, result);
+            Assert.Equal("241861950", _day.SolveB());
         }
     }
 }

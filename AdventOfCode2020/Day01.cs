@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AdventOfCode2020
 {
-    public class Day01
+    public class Day01 : IDay 
     {
         private List<int> _input;
 
@@ -13,23 +13,25 @@ namespace AdventOfCode2020
             _input = input.Select(s => int.Parse(s)).ToList();
         }
 
-        public int SolveA() 
+        public string SolveA() 
         {
             return _input 
                 .SelectMany(x => _input, (x, y) => (x, y))
                 .Where(t => (t.x + t.y) == 2020)
                 .Select(t => t.x * t.y)
-                .First();
+                .First()
+                .ToString();
         }
 
-        public int SolveB()
+        public string SolveB()
         {
             return _input 
                 .SelectMany(x => _input, (x, y) => (x, y))
                 .SelectMany(t => _input, (t, z) => (t.x, t.y, z))
                 .Where(t => (t.x + t.y + t.z) == 2020)
                 .Select(t => t.x * t.y * t.z)
-                .First();
+                .First()
+                .ToString();
         }
     }
 }
